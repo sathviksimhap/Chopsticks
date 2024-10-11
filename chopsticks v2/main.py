@@ -21,10 +21,10 @@ def player_input(player, p_player_hands):
     elif hit_or_switch == 's':
         #Checking if switch is possible
         total_fingers = player_hands[player][0] + player_hands[player][1]
-        if total_fingers > 1:
+        if 1 < total_fingers < 8:
             return brain.switch(player, p_player_hands)
         else:
-            print("Cant switch as you dont have enough fingers.")
+            print("Cant switch.")
             return brain.hit(player, p_player_hands)
     else:
         print("Invalid Choice")
