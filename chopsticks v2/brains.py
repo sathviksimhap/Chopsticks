@@ -51,7 +51,8 @@ class Brain:
             right_fingers = total_fingers - i
 
             if left_fingers != player_hands[player][0] and right_fingers != player_hands[player][1]:
-                options.append([left_fingers, right_fingers])
+                if left_fingers < 5 and right_fingers < 5:
+                    options.append([left_fingers, right_fingers])
 
         # printing all available options
         print("Your Switch Options are: ")
