@@ -5,11 +5,11 @@ brain = Brain()
 game_on = True
 player_hands = [[1, 1], [1, 1]]
 
-def display(player):
+def display(p_player_hands):
 
     print("")
-    print("Player One : ", art.hands[player[0][0]][player[0][1]])
-    print("Player Two : ", art.hands[player[1][0]][player[1][1]])
+    print("Player One : ", art.hands[p_player_hands[0][0]][p_player_hands[0][1]])
+    print("Player Two : ", art.hands[p_player_hands[1][0]][p_player_hands[1][1]])
 
 def player_input(player, p_player_hands):
 
@@ -19,7 +19,13 @@ def player_input(player, p_player_hands):
     if hit_or_switch == 'h':
         return brain.hit(player, p_player_hands)
     elif hit_or_switch == 's':
-        return brain.switch(player, p_player_hands)
+        #Checking if switch is possible
+        total_fingers = player_hands[player][0] + player_hands[player][1]
+        if total_fingers > 1:
+            return brain.switch(player, p_player_hands)
+        else:
+            print("Cant switch as you dont have enough fingers.")
+            return brain.hit(player, p_player_hands)
     else:
         print("Invalid Choice")
         return player_input(player, p_player_hands)
